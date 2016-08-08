@@ -6,15 +6,21 @@ usage(){
     echo "install: install exim/courier mail server"
 }
 
-RED='\033[91m'
-STD='\033[0m'
+RED="\033[91m"
+STD="\033[0m"
+YEL="\033[93m"
 
 [[ $# -lt 1 ]] && usage
 [[ $1 == "help" ]] && usage
-[[ $EUID -ne 0 ]] && echo -e "${RED}This script must be run as root${STD}" && exit 1
+[[ $EUID -ne 0 ]] && echo -e "${RED}This script must be run as root.${STD}" && exit 1
 
 install_exim() {
-    echo "lol"
+    echo -e "${YEL}Two boxes will appear. Hit [Enter] each time to continue.${STD}"
+    echo "Press [Enter] key to continue..."
+    aptitude -y install exim4 courier-imap courier-imap-ssl courier-pop courier-pop-ssl courier-authlib-userdb
+    chown -vR daemon: courier/*
+    cp -v courier/* /etc/courier
+    chown -vR $USER: courier/*
 }
 
 install_spamassassin() {

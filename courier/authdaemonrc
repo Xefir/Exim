@@ -1,0 +1,6 @@
+authmodulelist="authuserdb authpam"
+daemons=5
+authdaemonvar=/var/run/courier/authdaemon
+DEBUG_LOGIN=0
+DEFAULTOPTIONS=""
+LOGGEROPTS=""
