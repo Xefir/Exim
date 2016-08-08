@@ -6,15 +6,24 @@ usage(){
     echo "install: install exim/courier mail server"
 }
 
-RED="\033[91m"
-STD="\033[0m"
-YEL="\033[93m"
+RED="\e[91m"
+GRE="\e[92m"
+YEL="\e[93m"
+STD="\e[0m"
 
 [[ $# -lt 1 ]] && usage
 [[ $1 == "help" ]] && usage
 [[ $EUID -ne 0 ]] && echo -e "${RED}This script must be run as root.${STD}" && exit 1
 
+install_exim_ask_domain() {
+    echo -e "${GRE}Please enter the mail server's main domain${STD}"
+    read choice
+    [[ -n $choice ]] && echo $choice > /etc/mailname
+    [[ -z $choice ]] && install_exim_ask_domain
+}
+
 install_exim() {
+    install_exim_ask_domain
     echo -e "${YEL}Two boxes will appear. Hit [Enter] each time to continue.${STD}"
     echo "Press [Enter] key to continue..."
     aptitude -y install exim4 courier-imap courier-imap-ssl courier-pop courier-pop-ssl courier-authlib-userdb
