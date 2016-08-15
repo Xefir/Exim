@@ -67,7 +67,7 @@ install_restart() {
 }
 
 gen_public_dns() {
-    DNS=$(sudo openssl rsa -in /etc/exim4/dkim.key -pubout)
+    DNS=$(openssl rsa -in /etc/exim4/dkim.key -pubout)
     DNS=$(echo ${DNS} | sed "s/ //g" | sed "s/.*Y-----\(.*\)-----E.*/\1/g")
     echo -e "${YEL}Please put these pointers on your DNS provider :${STD}"
     echo -e '\t\t10800 IN MX 10 <domain>'
