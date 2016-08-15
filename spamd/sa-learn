@@ -1,0 +1,5 @@
+#!/bin/bash
+
+date >> /var/log/exim4/sa-learn
+find /var/vmail -type d -name '.Junk' | xargs -I junk sa-learn --spam junk/{cur,new} >> /var/log/exim4/sa-learn
+find /var/vmail -type d -name '.Junk' | xargs -I junk find junk/{cur,new} -type f -delete >> /var/log/exim4/sa-learn

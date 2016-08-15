@@ -1,0 +1,5 @@
+ENABLED=1
+OPTIONS="--create-prefs --max-children 5 --helper-home-dir"
+PIDFILE="/var/run/spamd.pid"
+#NICE="--nicelevel 15"
+CRON=1
