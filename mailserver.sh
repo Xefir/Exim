@@ -44,11 +44,16 @@ install_spamassassin() {
     aptitude -y install exim4-daemon-heavy sa-exim spamassassin
     cp -fv spamd/sa-learn /etc/cron.daily/sa-learn
     cp -fv spamd/spamassassin /etc/default/spamassassin
+    systemctl enable spamassassin
+    service spamassassin restart
     install_restart
 }
 
 install_clamav() {
     aptitude -y install exim4-daemon-heavy clamav clamav-daemon
+    adduser clamav Debian-exim
+    systemctl enable clamav-daemon
+    service clamav-daemon restart
     install_restart
 }
 
