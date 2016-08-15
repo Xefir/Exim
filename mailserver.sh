@@ -32,7 +32,7 @@ install_exim() {
     chown -vR $USER: courier/*
     mkdir -pv /etc/exim.domains
     mkdir -pv /etc/exim.forward
-    cp -fv exim4/* /etc/exim4/
+    cp -fv exim4/exim4.conf /etc/exim4/exim4.conf
     chmod -fv 777 /var/run/courier/authdaemon/socket
     /usr/share/doc/exim4-base/examples/exim-gencert
     openssl genrsa -out /etc/exim4/dkim.key 2048
