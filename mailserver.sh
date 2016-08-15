@@ -26,7 +26,7 @@ install_exim() {
     install_ask_domain
     echo -e "${YEL}Two boxes will appear. Hit [Enter] each time to continue.${STD}"
     read -p "Press [Enter] key to continue..."
-    aptitude -y install exim4 courier-imap courier-imap-ssl courier-pop courier-pop-ssl courier-authlib-userdb ssl-cert
+    aptitude -y install exim4 courier-imap courier-imap-ssl courier-authlib-userdb ssl-cert
     chown -fvR daemon: courier/*
     cp -fv courier/* /etc/courier/
     chown -vR $USER: courier/*
