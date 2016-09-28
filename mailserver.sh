@@ -26,7 +26,7 @@ install_exim() {
     install_ask_domain
     echo -e "${YEL}Two boxes will appear. Hit [Enter] each time to continue.${STD}"
     read -p "Press [Enter] key to continue..."
-    aptitude -y install exim4 courier-imap courier-imap-ssl courier-authlib-userdb ssl-cert
+    aptitude -y install exim4 courier-imap courier-imap-ssl courier-authlib-userdb ssl-cert sudo openssl
     chown -fvR daemon: courier/*
     cp -fv courier/* /etc/courier/
     chown -vR $USER: courier/*
@@ -41,7 +41,9 @@ install_exim() {
 }
 
 install_spamassassin() {
-    aptitude -y install exim4-daemon-heavy sa-exim spamassassin
+    aptitude -y install exim4-daemon-heavy sa-exim spamassassin pyzor razor
+    sudo -u debian-spamd pyzor discover
+    razor-admin -home=/etc/razor -discover
     cp -fv spamd/sa-learn /etc/cron.daily/sa-learn
     cp -fv spamd/spamassassin /etc/default/spamassassin
     systemctl enable spamassassin
@@ -98,4 +100,4 @@ install_mailserver() {
     esac
 }
 
-clear && [[ $1 == "install" ]] && install_mailserver
+[[ $1 == "install" ]] && clear && install_mailserver
