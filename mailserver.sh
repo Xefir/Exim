@@ -30,8 +30,8 @@ install_exim() {
     chown -fvR daemon: courier/*
     cp -fv courier/* /etc/courier/
     chown -vR $USER: courier/*
-    mkdir -pv /etc/exim.domains
-    mkdir -pv /etc/exim.forward
+    mkdir -pv /etc/exim4/domains
+    mkdir -pv /etc/exim4/forward
     cp -fv exim4/exim4.conf /etc/exim4/exim4.conf
     chmod -fv 777 /var/run/courier/authdaemon/socket
     /usr/share/doc/exim4-base/examples/exim-gencert
