@@ -37,7 +37,7 @@ install_spamassassin() {
     razor-admin -home=/etc/razor -discover
     cp -fv spamd/sa-learn /etc/cron.daily/sa-learn
     cp -fv spamd/spamassassin /etc/default/spamassassin
-    systemctl enable spamassassin
+    [[ -n $(which systemctl) ]] && systemctl enable spamassassin
     service spamassassin restart
     install_restart
 }
@@ -45,7 +45,7 @@ install_spamassassin() {
 install_clamav() {
     aptitude -y install exim4-daemon-heavy clamav clamav-daemon
     adduser clamav Debian-exim
-    systemctl enable clamav-daemon
+    [[ -n $(which systemctl) ]] && systemctl enable clamav-daemon
     service clamav-daemon restart
     install_restart
 }
