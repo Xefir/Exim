@@ -7,4 +7,4 @@ read emailto
 
 DIR=/etc/exim4/forward
 sed -i "s/$emailto,//g" "$DIR/$emailfrom"
-[[ ! -s $DIR/$emailfrom ]] && rm -f $DIR/$emailfrom
+[[ ! -s "$DIR/$emailfrom" ]] && rm -f "$DIR/$emailfrom"
