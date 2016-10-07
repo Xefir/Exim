@@ -53,9 +53,7 @@ install_clamav() {
 install_restart() {
     service courier-authdeamon restart
     service courier-imap restart
-    service courier-pop restart
     service courier-imap-ssl restart
-    service courier-pop-ssl restart
     service exim4 restart
 }
 
