@@ -5,4 +5,6 @@ read emailfrom
 echo "Forward TO email: "
 read emailto
 
-sed -i "s/$emailto,//g" "/etc/exim4/forward/$emailfrom"
+DIR=/etc/exim4/forward
+sed -i "s/$emailto,//g" "$DIR/$emailfrom"
+[[ ! -s $DIR/$emailfrom ]] && rm -f $DIR/$emailfrom

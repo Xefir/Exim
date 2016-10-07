@@ -5,6 +5,8 @@ read username
 echo "Domain: "
 read domain
 
-sed "/$username/d" "/etc/exim4/domains/$domain"
+DIR=/etc/exim4/domains
+sed -i "/$username/d" "$DIR/$domain"
+[[ ! -s $DIR/$domain ]] && rm -f $DIR/$domain
 userdb "$username@$domain" del
 makeuserdb
