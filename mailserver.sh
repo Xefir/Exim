@@ -1,18 +1,10 @@
 #!/usr/bin/env bash
 
-usage(){
-    echo "usage: ./mailserver.sh [help] [install]"
-    echo "help: show this help"
-    echo "install: install exim/courier mail server"
-}
-
 RED="\e[91m"
 GRE="\e[92m"
 YEL="\e[93m"
 STD="\e[0m"
 
-[[ $# -lt 1 ]] && usage
-[[ $1 == "help" ]] && usage
 [[ $EUID -ne 0 ]] && echo -e "${RED}This script must be run as root.${STD}" && exit 1
 
 install_ask_domain() {
@@ -85,4 +77,4 @@ install_mailserver() {
     esac
 }
 
-[[ $1 == "install" ]] && clear && install_mailserver
+clear && install_mailserver
