@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-DIR=/etc/exim4/forward
-for file in "$DIR/*"
+for file in /etc/exim4/forward/*
 do
-    echo "$file: $(cat $DIR/$file)"
+    echo "$(basename $file) -> $(cat $file)"
 done
