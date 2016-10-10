@@ -6,4 +6,4 @@ echo "Forward TO email: "
 read emailto
 
 DIR=/etc/exim4/forward
-echo "$(cat $DIR/$emailfrom)$emailto," > "$DIR/$emailfrom"
+echo "$([[ -f $DIR/$emailfrom ]] && cat $DIR/$emailfrom)$emailto," > "$DIR/$emailfrom"
