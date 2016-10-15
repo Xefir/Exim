@@ -19,15 +19,14 @@ install_exim() {
     echo -e "${YEL}Two boxes will appear. Hit [Enter] each time to continue.${STD}"
     read -p "Press [Enter] key to continue..."
     aptitude -y install exim4 courier-imap courier-imap-ssl courier-authlib-userdb ssl-cert sudo openssl
-    chown -fvR daemon: courier/*
-    cp -fv courier/* /etc/courier/
-    chown -vR $USER: courier/*
     mkdir -pv /etc/exim4/domains
     mkdir -pv /etc/exim4/forward
     cp -fv exim4/exim4.conf /etc/exim4/exim4.conf
+    chmod -fv 777 /var/run/courier/authdaemon
     chmod -fv 777 /var/run/courier/authdaemon/socket
     /usr/share/doc/exim4-base/examples/exim-gencert
     openssl genrsa -out /etc/exim4/dkim.key 2048
+    openssl dhparam -out /etc/courier/dhparams.pem 2048
     install_restart
 }
 
