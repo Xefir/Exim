@@ -4,4 +4,4 @@
 
 - Courier config modification
 - Quotas
-- Delete frozens
+- Inform about /etc/hosts manual modification

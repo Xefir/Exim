@@ -10,8 +10,8 @@ STD="\e[0m"
 install_ask_domain() {
     echo -e "${GRE}Please enter the mail server's main domain${STD}"
     read choice
-    [[ -n $choice ]] && echo $choice > /etc/mailname
-    [[ -z $choice ]] && install_ask_domain
+    [[ -n "$choice" ]] && echo "$choice" > /etc/mailname
+    [[ -z "$choice" ]] && install_ask_domain
 }
 
 install_exim() {
@@ -22,6 +22,7 @@ install_exim() {
     mkdir -pv /etc/exim4/domains
     mkdir -pv /etc/exim4/forward
     cp -fv exim4/exim4.conf /etc/exim4/exim4.conf
+    sed -i "s/ETC_MAILNAME =/ETC_MAILNAME = $(cat /etc/mailname)/" /etc/exim4/exim4.conf
     chmod -fv 777 /var/run/courier/authdaemon
     chmod -fv 777 /var/run/courier/authdaemon/socket
     /usr/share/doc/exim4-base/examples/exim-gencert
@@ -64,7 +65,7 @@ install_mailserver() {
     echo "4. Both SpamAssassin and ClamAV"
     echo "5. Exit"
     read -p "Enter choice [1 - 5] " choice
-    case $choice in
+    case "$choice" in
         1) install_exim ;;
         2) install_exim && install_spamassassin ;;
         3) install_exim && install_clamav ;;
