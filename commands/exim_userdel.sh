@@ -10,3 +10,4 @@ sed -i "/$username/d" "$DIR/$domain"
 [[ ! -s "$DIR/$domain" ]] && rm -f "$DIR/$domain"
 userdb "$username@$domain" del
 makeuserdb
+service exim4 reload
