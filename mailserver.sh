@@ -33,7 +33,6 @@ install_exim() {
 
 install_spamassassin() {
     aptitude -y install exim4-daemon-heavy sa-exim spamassassin pyzor razor
-    sudo -u debian-spamd pyzor discover
     razor-admin -home=/etc/razor -discover
     cp -fv spamd/sa-learn /etc/cron.daily/sa-learn
     cp -fv spamd/spamassassin /etc/default/spamassassin
